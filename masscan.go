@@ -246,6 +246,14 @@ func SetParamExclude(excludes ...string) func(*Scanner) {
 	}
 }
 
+func SetParamExclude(excludefile ...string) func(*Scanner) {
+	excludeFile := strings.Join(excludefile, ",")
+	return func(s *Scanner) {
+		s.args = append(s.args, "--excludefile")
+		s.args = append(s.args, excludeFile)
+	}
+}
+
 // SetParamPorts sets the ports which the scanner should scan on each host.
 // eg: -p 80,8000-8100
 func SetParamPorts(ports ...string) func(*Scanner) {
