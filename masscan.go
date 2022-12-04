@@ -246,7 +246,7 @@ func SetParamExclude(excludes ...string) func(*Scanner) {
 	}
 }
 
-func SetParamExclude(excludefile ...string) func(*Scanner) {
+func SetParamExcludeFile(excludefile ...string) func(*Scanner) {
 	excludeFile := strings.Join(excludefile, ",")
 	return func(s *Scanner) {
 		s.args = append(s.args, "--excludefile")
