@@ -10,8 +10,8 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/zan8in/masscan/errors"
-	"github.com/zan8in/masscan/tools"
+	"github.com/black-august/masscan/errors"
+	"github.com/black-august/masscan/tools"
 )
 
 type (
@@ -53,12 +53,6 @@ func NewScanner(options ...Option) (*Scanner, error) {
 			return nil, errors.ErrMasscanNotInstalled
 		}
 	}
-
-	// 去掉自动检测网卡，让用户自己控制检测行为
-	// dev, err := tools.AutoGetDevices()
-	// if err == nil {
-	// 	scanner.args = append(scanner.args, fmt.Sprintf("--interface=%s", dev.Device))
-	// }
 
 	if scanner.ctx == nil {
 		scanner.ctx = context.Background()
@@ -303,6 +297,7 @@ func SetShard(x int, y int) func(*Scanner) {
 		s.args = append(s.args, fmt.Sprintf("--shard=%d/%d", x, y))
 	}
 }
+
 // SetSeed sets the seed for scanning randomization (allows for distributed scanning as well as SetShard)
 // eg: --seed 01123581321345589144233377
 func SetSeed(x int) func(*Scanner) {
